@@ -1,20 +1,59 @@
 import { useState } from "react"
-
+import axios from 'axios';
 
 export default function Userform  () {
 
   const [Name, setName]= useState('');
   const [socialmediahandle, setsocialmediahandle] = useState('');
-  const [file,setfile] = useState('');
+  const [file,setfile] = useState([]);
 
-  const Handlesubmit2 = async() =>{
+  const handleFileChange = (e) => {
+    setfile(e.target.files);
+  };
+
+
+  const Handlesubmit2 = async(e) =>{
+    e.preventDefault();
+   
+   
     
-    if (!Name||!socialmediahandle||!file) {
+
+    if (!Name||!socialmediahandle||!file.length===0) {
       alert("Please fill all the fields");
       console.log("Please fill all the fields");
+      return;
     }
 
-    
+    try {
+
+      const formData = new FormData();
+      formData.append('name', Name);
+      formData.append('socialmediahandle', socialmediahandle);
+      for (let i = 0; i < file.length; i++) {
+        formData.append("files", file[i]); // Append multiple files
+      }
+  
+      const response = await axios.post(
+        'http://localhost:3001/backend/userdata',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+  
+      console.log(response.data);
+  
+      if (response.data.message === "User Data added Successfully") {
+        console.log(response.data.message);
+        alert("User details added successfully");
+      } else {
+        alert("User details not added. Try again!");
+      }    } catch (error) {
+      console.log("error: " + error);
+    }
+
 
   }
 
@@ -27,7 +66,7 @@ export default function Userform  () {
       <label htmlFor="" className="form-label">Name</label>
       </div>
       <div className="mb-3">
-        <input type="text" name="name" value={Name} onChange={(e)=>setName(e.target.value)} placeholder="Enter your name here" className="form-control" />
+        <input type="text" name="Name" value={Name} onChange={(e)=>setName(e.target.value)} placeholder="Enter your name here" className="form-control" />
       </div>
       <div className="mb-3">
       <label htmlFor="">Social Media Handle</label>
@@ -39,7 +78,7 @@ export default function Userform  () {
         <label htmlFor="" className="form-label">Upload Images</label>
       </div>
       <div className="mb-3">
-        <input type="file" name="file" value={file} onChange={(e)=>setfile(e.target.value)} className="form-control" src="" alt="" />
+        <input type="file" multiple name="files" onChange={handleFileChange} className="form-control" src="" alt="" />
       </div>
       <button type="submit" className='btn btn-success d-flex mx-auto'>Submit</button>
     </form>
