@@ -1,0 +1,104 @@
+body,html{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+ }
+ 
+ .registeruser{
+     display: flex;   
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     left:30rem;
+     top: 18%;
+     width: 30%;
+ 
+ 
+ }   
+ 
+ .formdisplay{
+     box-shadow: 0px 0px 10px 10px lightblue;
+ }
+ 
+ .loginuser{
+     display: flex;   
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     left:30rem;
+     top: 18%;
+     width: 30%;
+ 
+ 
+ }
+ 
+ .divforforgetpass{
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+ 
+ .forgetuser{
+     display: flex;   
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     left:30rem;
+     top: 18%;
+     width: 30%;
+ }
+ 
+ @media (max-width: 768px) {
+     .registeruser, .loginuser, .forgetuser {
+         left: 10%;
+         width: 80%;
+         top: 10%;
+     }
+ 
+     .formdisplay {
+         width: 100%;
+         padding: 10px;
+     }
+ 
+     .divforforgetpass {
+         text-align: center;
+     }
+ }
+ 
+ @media (min-width: 768px) and (max-width: 1024px) {
+     .registeruser, .loginuser, .forgetuser {
+         left: 20%;
+         width: 60%;
+         top: 15%;
+     }
+ 
+     .formdisplay {
+         width: 90%;
+         padding: 15px;
+     }
+ 
+     .divforforgetpass {
+         text-align: center;
+     }
+ }
+ 
+ @media (min-width: 1024px) {
+     .registeruser, .loginuser, .forgetuser {
+         left:35%;
+         width: 30%;
+         top: 18%;
+     }
+ 
+     .formdisplay {
+         width: 80%;
+         padding: 20px;
+     }
+ 
+     .divforforgetpass {
+         text-align: center;
+     }
+ }
