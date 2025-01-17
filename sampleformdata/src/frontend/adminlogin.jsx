@@ -1,6 +1,6 @@
 import { useState } from "react"
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Admin  ()  {
@@ -8,7 +8,7 @@ export default function Admin  ()  {
 
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
-
+  const navigate = useNavigate();
 
   const handlesubmit = async(e) =>{
     e.preventDefault();
@@ -31,6 +31,7 @@ export default function Admin  ()  {
         alert("Welcome Admin");
         setusername('');
         setpassword('');
+        navigate('/userdetails');
         
 
       } else {
