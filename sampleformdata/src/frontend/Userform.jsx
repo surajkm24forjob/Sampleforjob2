@@ -7,6 +7,8 @@ export default function Userform  () {
   const [socialmediahandle, setsocialmediahandle] = useState('');
   const [file,setfile] = useState([]);
 
+  const Url = import.meta.env.PORT;
+
   const handleFileChange = (e) => {
     setfile(e.target.files);
   };
@@ -34,7 +36,7 @@ export default function Userform  () {
       }
   
       const response = await axios.post(
-        'http://localhost:3001/backend/userdata',
+        `${Url}/backend/userdata`,
         formData,
         {
           headers: {

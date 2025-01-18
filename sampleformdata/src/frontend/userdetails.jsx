@@ -7,12 +7,13 @@ export default function UserNew () {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const Url = import.meta.env.PORT;
   
     useEffect(() => {
       // Fetch user details when the component mounts
       const fetchUserDetails = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/backend/userdata');
+          const response = await axios.get(`${Url}/backend/userdata`);
           setUsers(response.data); // Store user details in state
           setLoading(false);
         } catch (err) {

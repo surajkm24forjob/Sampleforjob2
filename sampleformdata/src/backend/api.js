@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 
 const cors = require('cors')
 
-
-
+const corsUrl = process.env.apiUrl;
+const Port = process.env.PORT;
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: `${corsUrl}`,
     credentials: true,
 }))
 
@@ -24,7 +24,7 @@ app.use(express.json());
 app.use('/backend', require('./routes'));
 
 
-const port = 3001;
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
+
+app.listen(Port, () => {
+    console.log(`Server started on port ${Port}`);
 });

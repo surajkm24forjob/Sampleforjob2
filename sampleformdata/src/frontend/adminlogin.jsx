@@ -9,6 +9,8 @@ export default function Admin  ()  {
   const [username, setusername] = useState('');
   const [password, setpassword] = useState('');
   const navigate = useNavigate();
+  const Url = import.meta.env.PORT;
+
 
   const handlesubmit = async(e) =>{
     e.preventDefault();
@@ -20,7 +22,7 @@ export default function Admin  ()  {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/backend/login',{
+      const response = await axios.post(`${Url}/backend/login`,{
         username,
         password,
       });
